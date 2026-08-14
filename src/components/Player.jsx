@@ -35,12 +35,22 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
     }
   }, [])
 
-  // Use VidLink by default for dual audio, subtitles, and ad-blocking
-  const activeSrc = id
-    ? (type === 'movie'
-      ? `https://vidlink.pro/movie/${id}?primaryColor=e50914&autoplay=false`
-      : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914&autoplay=false`)
-    : src
+  const [activeServer, setActiveServer] = useState(0)
+
+  // Reset to default premium server when content changes
+  useEffect(() => {
+    setActiveServer(0)
+  }, [id])
+
+  // Alternate backup servers to support fallback streams
+  const servers = [
+    { name: 'Server 1 (VidLink)', src: id ? (type === 'movie' ? `https://vidlink.pro/movie/${id}?primaryColor=e50914&autoplay=false` : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914&autoplay=false`) : src },
+    { name: 'Server 2 (Vidsrc)', src: id ? (type === 'movie' ? `https://vidsrc.to/embed/movie/${id}` : `https://vidsrc.to/embed/tv/${id}/${season}/${episode}`) : src },
+    { name: 'Server 3 (SuperEmbed)', src: id ? (type === 'movie' ? `https://multiembed.to/yt.php?video_id=${id}&tmdb=1` : `https://multiembed.to/yt.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`) : src },
+    { name: 'Server 4 (Embed.su)', src: id ? (type === 'movie' ? `https://embed.su/embed/movie/${id}` : `https://embed.su/embed/tv/${id}/${season}/${episode}`) : src }
+  ]
+
+  const activeSrc = servers[activeServer]?.src || src
 
   return (
     <>
@@ -60,6 +70,19 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
 
           {/* Action buttons */}
           <div className={styles.actionSection}>
+            <select
+              value={activeServer}
+              onChange={(e) => setActiveServer(Number(e.target.value))}
+              className={styles.serverSelect}
+              title="Change Streaming Server"
+            >
+              {servers.map((srv, idx) => (
+                <option key={idx} value={idx}>
+                  {srv.name}
+                </option>
+              ))}
+            </select>
+
             <button
               className={`${styles.actionBtn} ${isTheater ? styles.activeAction : ''}`}
               onClick={() => setIsTheater(!isTheater)}

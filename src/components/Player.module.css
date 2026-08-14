@@ -143,6 +143,32 @@
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.12);
 }
 
+.serverSelect {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.serverSelect:hover, .serverSelect:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(229, 9, 20, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.15);
+}
+
+.serverSelect option {
+  background: #141414;
+  color: #fff;
+}
+
 .activeAction {
   background: rgba(229, 9, 20, 0.2) !important;
   border-color: #e50914 !important;

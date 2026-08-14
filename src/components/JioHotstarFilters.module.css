@@ -1,0 +1,110 @@
+.container {
+  width: 100%;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0 4%;
+  box-sizing: border-box;
+}
+
+.scrollWrap {
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.5rem;
+  margin-left: -0.25rem;
+}
+
+/* Hide scrollbars */
+.scrollWrap::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollWrap {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.row {
+  display: flex;
+  gap: 1rem;
+  min-width: max-content;
+  padding: 0.25rem;
+}
+
+.card {
+  width: 180px;
+  height: 90px;
+  border-radius: 12px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s ease;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(0.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+.title {
+  font-size: 0.9rem;
+  font-weight: 750;
+  color: #fff;
+  text-align: center;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+}
+
+/* Hover effects */
+.card:hover {
+  transform: translateY(-2px) scale(1.025);
+  border-color: var(--brand-color, #fff);
+}
+
+.card:hover .overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Active states */
+.activeCard {
+  border-color: var(--brand-color, #e50914) !important;
+  transform: translateY(-2px) scale(1.025);
+  box-shadow: 
+    0 0 15px var(--brand-color, rgba(229, 9, 20, 0.4)),
+    0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.activeCard .overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+    margin: 0.25rem 0 1.25rem;
+  }
+  .card {
+    width: 140px;
+    height: 75px;
+  }
+  .title {
+    font-size: 0.8rem;
+  }
+}

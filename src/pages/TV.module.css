@@ -1,56 +1,104 @@
-.searchRow {
+.page {
+  min-height: 100vh;
+}
+
+.playerSection {
+  padding: var(--header-height) 4% 1rem;
+}
+
+.pickerSection {
+  padding: 1rem 4% 1rem;
+}
+
+.searchSection {
+  padding: 1rem 4% 0.5rem;
+}
+
+.searchForm {
+  max-width: 500px;
+}
+
+.searchWrap {
+  position: relative;
   display: flex;
-  gap: 10px;
-  margin-bottom: 2rem;
+  align-items: center;
 }
 
-.input {
-  flex: 1;
-  background: var(--bg-input);
-  border: 0.5px solid var(--border);
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-dim);
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid #444;
   color: var(--text);
-  padding: 11px 16px;
-  border-radius: 8px;
-  font-size: 15px;
-  font-family: var(--font);
+  padding: 10px 36px 10px 36px;
+  border-radius: var(--radius);
+  font-size: 14px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-.input:focus {
-  border-color: rgba(200, 169, 110, 0.45);
+.searchInput:focus {
+  border-color: #fff;
+  background: rgba(0, 0, 0, 0.8);
 }
 
-.input::placeholder {
+.searchInput::placeholder {
   color: var(--text-dim);
 }
 
-.btn {
-  padding: 11px 28px;
-  background: var(--gold);
-  color: #0a0a0a;
+.clearBtn {
+  position: absolute;
+  right: 8px;
+  background: none;
   border: none;
-  border-radius: 8px;
+  color: var(--text-muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color var(--transition-fast);
+}
+
+.clearBtn:hover {
+  color: #fff;
+}
+
+/* Search results */
+.searchResults {
+  padding: 1rem 4% 3rem;
+}
+
+.searchTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
   font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.07em;
-  font-family: var(--font);
-  transition: background 0.2s, transform 0.15s;
+  cursor: pointer;
+  transition: color var(--transition-fast);
 }
 
-.btn:hover {
-  background: var(--gold-hover);
-  transform: translateY(-1px);
+.backBtn:hover {
+  color: #fff;
 }
 
-.btn:active {
-  transform: translateY(0);
-}
-
-.sectionLabel {
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+/* Rows section */
+.rows {
+  padding-top: 0.5rem;
 }

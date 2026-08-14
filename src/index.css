@@ -5,17 +5,29 @@
 }
 
 :root {
-  --bg: #0a0a0a;
-  --bg-card: #111111;
-  --bg-input: #0e0e0e;
-  --border: #1e1e1e;
-  --border-hover: rgba(200, 169, 110, 0.4);
-  --text: #e5e5e5;
-  --text-muted: #888888;
-  --text-dim: #484848;
+  color-scheme: dark;
+  --bg: #141414;
+  --bg-surface: #1a1a1a;
+  --bg-card: #181818;
+  --bg-hover: #252525;
+  --accent: #E50914;
+  --accent-hover: #f6121d;
+  --white: #FFFFFF;
+  --text: #FFFFFF;
+  --text-secondary: #B3B3B3;
+  --text-muted: #808080;
+  --text-dim: #555555;
+  --green: #46d369;
   --gold: #c8a96e;
-  --gold-hover: #d4b87c;
-  --font: 'EB Garamond', Georgia, serif;
+  --font: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --transition-fast: 0.15s ease;
+  --transition-med: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --header-height: 68px;
+  --row-card-height: 160px;
 }
 
 html {
@@ -27,10 +39,11 @@ html, body {
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.5;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 button {
@@ -38,29 +51,68 @@ button {
   cursor: pointer;
 }
 
-input {
+input, select {
   font-family: var(--font);
 }
 
 a {
   font-family: var(--font);
+  color: inherit;
+  text-decoration: none;
 }
 
+img {
+  display: block;
+}
+
+/* Scrollbar - thin dark */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 0;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #2a2a2a;
+  background: #333;
   border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3a3a3a;
 }
 
 ::selection {
-  background: rgba(200, 169, 110, 0.25);
+  background: rgba(229, 9, 20, 0.3);
   color: #fff;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #222 25%, #2a2a2a 50%, #222 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
 }

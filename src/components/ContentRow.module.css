@@ -1,0 +1,113 @@
+.row {
+  margin-bottom: 2rem;
+  position: relative;
+  animation: fadeInUp 0.5s ease both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.75rem;
+  padding: 0 4%;
+  letter-spacing: -0.01em;
+}
+
+.scrollWrap {
+  position: relative;
+}
+
+.scrollContainer {
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 0 4% 40px;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollInner {
+  display: flex;
+  gap: 8px;
+}
+
+/* Chevron arrows */
+.arrow {
+  position: absolute;
+  top: 0;
+  bottom: 40px;
+  width: 50px;
+  background: rgba(20, 20, 20, 0.7);
+  border: none;
+  color: #fff;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+  animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.arrow:hover {
+  background: rgba(20, 20, 20, 0.9);
+}
+
+.arrowLeft {
+  left: 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.arrowRight {
+  right: 0;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+/* Skeleton cards */
+.skeleton {
+  flex-shrink: 0;
+  width: 240px;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.1rem;
+    padding: 0 3%;
+  }
+
+  .scrollContainer {
+    padding: 0 3% 20px;
+  }
+
+  .skeleton {
+    width: 160px;
+  }
+
+  .arrow {
+    display: none;
+  }
+}

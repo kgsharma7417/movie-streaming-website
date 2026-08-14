@@ -4,9 +4,23 @@
   gap: 1.1rem;
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .skeleton {
-  border-radius: 8px;
+  border-radius: 10px;
   aspect-ratio: 2 / 3;
+  background: linear-gradient(90deg, #111 25%, #1c1c1c 50%, #111 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonList {
+  border-radius: 10px;
+  height: 100px;
   background: linear-gradient(90deg, #111 25%, #1c1c1c 50%, #111 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;

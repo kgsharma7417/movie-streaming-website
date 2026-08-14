@@ -26,8 +26,8 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
   // Use VidLink by default for dual audio, subtitles, and ad-blocking
   const activeSrc = id
     ? (type === 'movie'
-        ? `https://vidlink.pro/movie/${id}?primaryColor=e50914`
-        : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914`)
+        ? `https://vidlink.pro/movie/${id}?primaryColor=e50914&autoplay=false`
+        : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914&autoplay=false`)
     : src
 
   return (
@@ -43,7 +43,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
           {/* Custom Player Branding */}
           <div className={styles.playerBrand}>
             <span className={styles.brandDot}></span>
-            <span className={styles.brandText}>CINESCOPE PLAYER</span>
+            <span className={styles.brandText}>KGVIEW PLAYER</span>
           </div>
 
           {/* Action buttons */}
@@ -72,7 +72,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
             <iframe
               src={activeSrc}
               allowFullScreen
-              allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+              allow="encrypted-media; fullscreen; picture-in-picture"
               title={title}
             />
             {/* Transparent overlay to allow page scrolling on mobile/desktop */}

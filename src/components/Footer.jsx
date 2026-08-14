@@ -48,7 +48,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <p className={styles.copyright}>© {new Date().getFullYear()} CineScope. Built with TMDB.</p>
+        <p className={styles.copyright}>© {new Date().getFullYear()} KGVIEW. Built with TMDB.</p>
       </div>
     </footer>
   )

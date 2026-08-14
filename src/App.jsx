@@ -99,7 +99,7 @@ export default function App() {
 
           {/* Logo */}
           <button className={styles.logo} onClick={goHome} aria-label="Go to home">
-            CINESCOPE
+            KGVIEW
           </button>
 
           {/* Nav links (desktop) */}

@@ -1,27 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styles from './Player.module.css'
 
 export default function Player({ src, title, year, rating, overview, badge, id, type, season, episode, onClose }) {
   const [isTheater, setIsTheater] = useState(false)
-  const [activeServer, setActiveServer] = useState(0)
-
-  // Alternate backup servers to support fallback streams and dual audio
-  const servers = [
-    { name: 'Server 1 (Primary)', src: src },
-    { name: 'Server 2 (VidLink - Dual Audio)', src: type === 'movie' ? `https://vidlink.pro/embed/movie/${id}` : `https://vidlink.pro/embed/tv/${id}/${season}/${episode}` },
-    { name: 'Server 3 (Vidsrc - HD)', src: type === 'movie' ? `https://vidsrc.to/embed/movie/${id}` : `https://vidsrc.to/embed/tv/${id}/${season}/${episode}` },
-    { name: 'Server 4 (SuperEmbed)', src: type === 'movie' ? `https://multiembed.to/yt.php?video_id=${id}&tmdb=1` : `https://multiembed.to/yt.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}` },
-    { name: 'Server 5 (Embed.su)', src: type === 'movie' ? `https://embed.su/embed/movie/${id}` : `https://embed.su/embed/tv/${id}/${season}/${episode}` }
-  ]
-
-  // Reset server selection when source content changes
-  useEffect(() => {
-    setActiveServer(0)
-  }, [src, id])
 
   if (!src) return null
 
-  const activeSrc = servers[activeServer]?.src || src
+  // Use VidLink by default for dual audio, subtitles, and ad-blocking
+  const activeSrc = id
+    ? (type === 'movie'
+        ? `https://vidlink.pro/embed/movie/${id}`
+        : `https://vidlink.pro/embed/tv/${id}/${season}/${episode}`)
+    : src
 
   return (
     <>
@@ -33,20 +23,10 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
       <div className={`${styles.wrap} ${isTheater ? styles.theaterMode : ''}`}>
         {/* Player Controls Header */}
         <div className={styles.controlHeader}>
-          {/* Server List */}
-          <div className={styles.serverSection}>
-            <span className={styles.serverLabel}>Select Server:</span>
-            <div className={styles.serverList}>
-              {servers.map((srv, idx) => (
-                <button
-                  key={srv.name}
-                  className={`${styles.serverChip} ${activeServer === idx ? styles.activeServer : ''}`}
-                  onClick={() => setActiveServer(idx)}
-                >
-                  {srv.name}
-                </button>
-              ))}
-            </div>
+          {/* Custom Player Branding */}
+          <div className={styles.playerBrand}>
+            <span className={styles.brandDot}></span>
+            <span className={styles.brandText}>CINESCOPE PLAYER</span>
           </div>
 
           {/* Action buttons */}
@@ -56,7 +36,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
               onClick={() => setIsTheater(!isTheater)}
               title="Toggle Theater Mode"
             >
-              🎬 {isTheater ? 'Normal Mode' : 'Theater Mode'}
+              🎬 {isTheater ? 'Normal' : 'Theater'}
             </button>
             {onClose && (
               <button className={styles.closeBtn} onClick={onClose} aria-label="Close player">✕</button>
@@ -73,6 +53,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
               allowFullScreen
               allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
               title={title}
+              sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
             />
           </div>
         </div>

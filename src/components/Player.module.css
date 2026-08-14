@@ -43,13 +43,15 @@
   justify-content: space-between;
   align-items: center;
   gap: 1.5rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(10, 10, 10, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: none;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  padding: 0.75rem 1.25rem;
-  backdrop-filter: blur(10px);
+  padding: 0.85rem 1.5rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .serverSection {
@@ -74,30 +76,34 @@
 }
 
 .serverChip {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #cbd5e0;
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .serverChip:hover {
   background: rgba(255, 255, 255, 0.12);
   color: #fff;
-  border-color: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  border-color: rgba(229, 9, 20, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(229, 9, 20, 0.15);
 }
 
 .activeServer {
-  background: rgba(229, 9, 20, 0.15) !important;
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.25), rgba(229, 9, 20, 0.15)) !important;
   border-color: #e50914 !important;
   color: #fff !important;
   font-weight: 600;
-  box-shadow: 0 0 12px rgba(229, 9, 20, 0.3);
+  box-shadow: 
+    0 0 15px rgba(229, 9, 20, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .actionSection {
@@ -107,26 +113,28 @@
 }
 
 .actionBtn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #fff;
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .actionBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-1px);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.12);
 }
 
 .activeAction {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-color: #fff !important;
+  background: rgba(229, 9, 20, 0.2) !important;
+  border-color: #e50914 !important;
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.25);
 }
 
 .closeBtn {
@@ -158,16 +166,16 @@
 
 .ambientGlow {
   position: absolute;
-  top: -2%;
-  left: -2%;
-  right: -2%;
-  bottom: -2%;
-  filter: blur(60px);
-  opacity: 0.45;
+  top: -3%;
+  left: -3%;
+  right: -3%;
+  bottom: -3%;
+  filter: blur(80px);
+  opacity: 0.55;
   z-index: -1;
   border-radius: 24px;
-  background: linear-gradient(135deg, rgba(229, 9, 20, 0.5), rgba(0, 168, 225, 0.5), rgba(130, 48, 198, 0.5));
-  animation: rotateGlow 12s linear infinite, pulseGlow 4s ease-in-out infinite alternate;
+  background: linear-gradient(135deg, rgba(229, 9, 20, 0.65), rgba(130, 48, 198, 0.65), rgba(0, 168, 225, 0.65));
+  animation: rotateGlow 14s linear infinite, pulseGlow 5s ease-in-out infinite alternate;
   pointer-events: none;
   transition: all 0.5s ease;
 }
@@ -187,8 +195,9 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
   position: relative;
 }
 
@@ -202,15 +211,17 @@
 
 /* Details Meta Card */
 .metaCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  border-radius: 16px;
-  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 4px solid var(--accent);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
   margin-top: 1.5rem;
   box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.1),
-    0 10px 30px rgba(0, 0, 0, 0.4);
+    inset 0 1px 1px rgba(255, 255, 255, 0.05),
+    0 20px 45px rgba(0, 0, 0, 0.6);
 }
 
 .title {
@@ -243,10 +254,10 @@
 }
 
 .gold {
-  background: rgba(212, 175, 55, 0.08) !important;
-  border-color: rgba(212, 175, 55, 0.3) !important;
-  color: #ffd700 !important;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+  background: rgba(255, 170, 0, 0.08) !important;
+  border-color: rgba(255, 170, 0, 0.3) !important;
+  color: #ffaa00 !important;
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.15);
 }
 
 .badge {

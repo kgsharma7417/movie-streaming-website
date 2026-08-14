@@ -17,13 +17,16 @@
   justify-content: space-between;
   padding: 0 4%;
   height: var(--header-height);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 10%, transparent);
-  transition: background 0.4s ease;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, transparent);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .headerScrolled {
-  background: var(--bg);
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  background: rgba(20, 20, 20, 0.75) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
 }
 
 .headerLeft {
@@ -43,16 +46,19 @@
   background: none;
   border: none;
   padding: 0;
-  font-size: 1.4rem;
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-size: 1.5rem;
   font-weight: 900;
-  letter-spacing: 0.08em;
+  letter-spacing: 1.5px;
   color: var(--accent);
   cursor: pointer;
-  transition: opacity var(--transition-fast);
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 0 10px rgba(229, 9, 20, 0.25);
 }
 
 .logo:hover {
-  opacity: 0.85;
+  transform: scale(1.03);
+  text-shadow: 0 0 15px rgba(229, 9, 20, 0.65);
 }
 
 /* Nav links */
@@ -69,17 +75,42 @@
   font-weight: 400;
   cursor: pointer;
   transition: color var(--transition-fast);
-  padding: 0;
+  padding: 4px 0;
   position: relative;
 }
 
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 0 8px var(--accent);
+  border-radius: 2px;
+}
+
 .navLink:hover {
-  color: #e5e5e5;
+  color: #fff;
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .navLinkActive {
   color: var(--white);
   font-weight: 600;
+}
+
+.navLinkActive::after {
+  transform: scaleX(1) !important;
+  transform-origin: bottom left !important;
 }
 
 /* Hamburger */

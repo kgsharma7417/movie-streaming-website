@@ -25,7 +25,7 @@ function hydrate(key) {
   try { const v = sessionStorage.getItem(key); return v ? JSON.parse(v) : null } catch { return null }
 }
 
-export default function Movies() {
+export default function Movies({ globalSearch, setGlobalSearch }) {
   const savedQuery = hydrate('mv_query') || ''
   const savedPlayer = hydrate('mv_player')
 
@@ -87,6 +87,26 @@ export default function Movies() {
       .finally(() => setPlatformLoading(false))
   }, [selectedPlatform, activeSubFilter])
 
+  // Sync with global header search query
+  useEffect(() => {
+    const q = (globalSearch || '').trim()
+    if (q) {
+      setQuery(q)
+      setIsSearching(true)
+      setSearchLoading(true)
+      setSelectedPlatform(null)
+      api.searchMovies(q)
+        .then(d => setSearchResults(d.results || []))
+        .finally(() => setSearchLoading(false))
+    } else {
+      if (isSearching) {
+        setQuery('')
+        setIsSearching(false)
+        setSearchResults([])
+      }
+    }
+  }, [globalSearch])
+
   const playerAnchorRef = useRef(null)
   const searchInputRef = useRef(null)
 
@@ -129,6 +149,7 @@ export default function Movies() {
     setSearchLoading(true)
     setSearchResults([])
     setSelectedPlatform(null)
+    setGlobalSearch(q)
     persist('mv_query', q)
     const d = await api.searchMovies(q)
     setSearchResults(d.results || [])
@@ -139,6 +160,7 @@ export default function Movies() {
     setQuery('')
     setIsSearching(false)
     setSearchResults([])
+    setGlobalSearch('')
     persist('mv_query', '')
     searchInputRef.current?.focus()
   }

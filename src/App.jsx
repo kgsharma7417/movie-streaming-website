@@ -55,6 +55,13 @@ export default function App() {
     }
   }, [searchOpen])
 
+  // Sync header search box state when query changes
+  useEffect(() => {
+    if (searchQuery && !searchOpen) {
+      setSearchOpen(true)
+    }
+  }, [searchQuery, searchOpen])
+
   function goTab(t) {
     setTab(t)
     sessionStorage.setItem('cs_tab', t)
@@ -190,7 +197,11 @@ export default function App() {
 
       {/* Main content */}
       <main className={styles.main} key={`${tab}-${homeKey}`}>
-        {tab === 'movies' ? <Movies key={homeKey} /> : <TV />}
+        {tab === 'movies' ? (
+          <Movies key={homeKey} globalSearch={searchQuery} setGlobalSearch={setSearchQuery} />
+        ) : (
+          <TV globalSearch={searchQuery} setGlobalSearch={setSearchQuery} />
+        )}
       </main>
 
       {/* Footer */}

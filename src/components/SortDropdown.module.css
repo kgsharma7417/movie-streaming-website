@@ -22,7 +22,7 @@
 }
 
 .trigger:hover {
-  border-color: rgba(200, 169, 110, 0.4);
+  border-color: rgba(229, 9, 20, 0.4);
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .triggerValue {
-  color: var(--gold);
+  color: var(--accent);
   font-weight: 500;
 }
 
@@ -97,11 +97,11 @@
 }
 
 .optionActive {
-  color: var(--gold);
-  background: rgba(200, 169, 110, 0.08);
+  color: var(--accent);
+  background: rgba(229, 9, 20, 0.08);
 }
 
 .check {
   font-size: 12px;
-  color: var(--gold);
+  color: var(--accent);
 }

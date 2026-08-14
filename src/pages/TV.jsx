@@ -21,7 +21,7 @@ const TV_GENRE_ROWS = [
 function persist(key, val) { try { sessionStorage.setItem(key, JSON.stringify(val)) } catch {} }
 function hydrate(key) { try { const v = sessionStorage.getItem(key); return v ? JSON.parse(v) : null } catch { return null } }
 
-export default function TV() {
+export default function TV({ globalSearch, setGlobalSearch }) {
   const savedQuery = hydrate('tv_query') || ''
   const savedPlayer = hydrate('tv_player')
 
@@ -85,6 +85,26 @@ export default function TV() {
       .finally(() => setPlatformLoading(false))
   }, [selectedPlatform, activeSubFilter])
 
+  // Sync with global header search query
+  useEffect(() => {
+    const q = (globalSearch || '').trim()
+    if (q) {
+      setQuery(q)
+      setIsSearching(true)
+      setSearchLoading(true)
+      setSelectedPlatform(null)
+      api.searchTV(q)
+        .then(d => setSearchResults(d.results || []))
+        .finally(() => setSearchLoading(false))
+    } else {
+      if (isSearching) {
+        setQuery('')
+        setIsSearching(false)
+        setSearchResults([])
+      }
+    }
+  }, [globalSearch])
+
   const playerAnchorRef = useRef(null)
   const searchInputRef = useRef(null)
   const didRestore = useRef(false)
@@ -139,6 +159,7 @@ export default function TV() {
     setSearchLoading(true)
     setSearchResults([])
     setSelectedPlatform(null)
+    setGlobalSearch(q)
     persist('tv_query', q)
     const d = await api.searchTV(q)
     setSearchResults(d.results || [])
@@ -149,6 +170,7 @@ export default function TV() {
     setQuery('')
     setIsSearching(false)
     setSearchResults([])
+    setGlobalSearch('')
     persist('tv_query', '')
     searchInputRef.current?.focus()
   }

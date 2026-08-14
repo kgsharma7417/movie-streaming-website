@@ -51,7 +51,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
 
           {/* Action buttons */}
           <div className={styles.actionSection}>
-            <button 
+            <button
               className={`${styles.actionBtn} ${isTheater ? styles.activeAction : ''}`}
               onClick={() => setIsTheater(!isTheater)}
               title="Toggle Theater Mode"

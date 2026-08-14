@@ -18,7 +18,7 @@
   --text-muted: #808080;
   --text-dim: #555555;
   --green: #46d369;
-  --gold: #c8a96e;
+  --gold: #E50914;
   --font: 'Inter', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
   --radius: 4px;
   --radius-md: 6px;
@@ -35,7 +35,7 @@ html {
 }
 
 html, body {
-  background: var(--bg);
+  background: radial-gradient(circle at top, #1c1c1c 0%, #111111 100%) no-repeat fixed;
   color: var(--text);
   font-family: var(--font);
   font-size: 16px;

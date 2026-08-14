@@ -199,6 +199,7 @@
   border-top: none;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
   position: relative;
+  cursor: default !important;
 }
 
 .playerBox iframe {
@@ -207,6 +208,7 @@
   height: clamp(240px, 50vw, 620px);
   border: none;
   color-scheme: dark;
+  cursor: default !important;
 }
 
 /* Details Meta Card */
@@ -328,4 +330,17 @@
 @keyframes pulseDot {
   0% { opacity: 0.4; transform: scale(0.9); }
   100% { opacity: 1; transform: scale(1.1); }
+}
+
+.scrollOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.overlayDisabled {
+  pointer-events: none !important;
 }

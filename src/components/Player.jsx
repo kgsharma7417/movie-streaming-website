@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styles from './Player.module.css'
 
 export default function Player({ src, title, year, rating, overview, badge, id, type, season, episode, onClose }) {
@@ -6,11 +6,28 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
 
   if (!src) return null
 
+  const [clickThrough, setClickThrough] = useState(false)
+  const clickTimerRef = useRef(null)
+
+  const handleOverlayClick = () => {
+    setClickThrough(true)
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current)
+    clickTimerRef.current = setTimeout(() => {
+      setClickThrough(false)
+    }, 6000)
+  }
+
+  useEffect(() => {
+    return () => {
+      if (clickTimerRef.current) clearTimeout(clickTimerRef.current)
+    }
+  }, [])
+
   // Use VidLink by default for dual audio, subtitles, and ad-blocking
   const activeSrc = id
     ? (type === 'movie'
-        ? `https://vidlink.pro/embed/movie/${id}`
-        : `https://vidlink.pro/embed/tv/${id}/${season}/${episode}`)
+        ? `https://vidlink.pro/movie/${id}?primaryColor=e50914`
+        : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914`)
     : src
 
   return (
@@ -47,13 +64,21 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
         {/* Video Area with Ambient Glow */}
         <div className={styles.videoContainer}>
           <div className={styles.ambientGlow} />
-          <div className={styles.playerBox}>
+          <div 
+            className={styles.playerBox}
+            onMouseEnter={() => setClickThrough(true)}
+            onMouseLeave={() => setClickThrough(false)}
+          >
             <iframe
               src={activeSrc}
               allowFullScreen
               allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
               title={title}
-              sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
+            />
+            {/* Transparent overlay to allow page scrolling on mobile/desktop */}
+            <div 
+              className={`${styles.scrollOverlay} ${clickThrough ? styles.overlayDisabled : ''}`} 
+              onClick={handleOverlayClick}
             />
           </div>
         </div>

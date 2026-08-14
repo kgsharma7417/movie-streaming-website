@@ -38,8 +38,8 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
   // Use VidLink by default for dual audio, subtitles, and ad-blocking
   const activeSrc = id
     ? (type === 'movie'
-        ? `https://vidlink.pro/movie/${id}?primaryColor=e50914&autoplay=false`
-        : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914&autoplay=false`)
+      ? `https://vidlink.pro/movie/${id}?primaryColor=e50914&autoplay=false`
+      : `https://vidlink.pro/tv/${id}/${season}/${episode}?primaryColor=e50914&autoplay=false`)
     : src
 
   return (
@@ -76,7 +76,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
         {/* Video Area with Ambient Glow */}
         <div className={styles.videoContainer}>
           <div className={styles.ambientGlow} />
-          <div 
+          <div
             className={styles.playerBox}
             onMouseLeave={() => setClickThrough(false)}
           >
@@ -87,8 +87,8 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
               title={title}
             />
             {/* Transparent overlay to allow page scrolling on mobile/desktop */}
-            <div 
-              className={`${styles.scrollOverlay} ${clickThrough ? styles.overlayDisabled : ''}`} 
+            <div
+              className={`${styles.scrollOverlay} ${clickThrough ? styles.overlayDisabled : ''}`}
               onClick={handleOverlayClick}
             />
           </div>

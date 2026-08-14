@@ -6,8 +6,15 @@
 }
 
 @keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Theater Mode active states */
@@ -24,8 +31,13 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .theaterMode {
@@ -100,7 +112,7 @@
   border-color: #e50914 !important;
   color: #fff !important;
   font-weight: 600;
-  box-shadow: 
+  box-shadow:
     0 0 15px rgba(229, 9, 20, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transform: translateY(-2px);
@@ -181,13 +193,25 @@
 }
 
 @keyframes rotateGlow {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes pulseGlow {
-  0% { opacity: 0.35; transform: scale(0.96); }
-  100% { opacity: 0.55; transform: scale(1.04); }
+  0% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+
+  100% {
+    opacity: 0.55;
+    transform: scale(1.04);
+  }
 }
 
 .playerBox {
@@ -221,7 +245,7 @@
   border-radius: 12px;
   padding: 1.5rem 1.75rem;
   margin-top: 1.5rem;
-  box-shadow: 
+  box-shadow:
     inset 0 1px 1px rgba(255, 255, 255, 0.05),
     0 20px 45px rgba(0, 0, 0, 0.6);
 }
@@ -284,14 +308,17 @@
     gap: 0.75rem;
     padding: 0.75rem 1rem;
   }
+
   .serverSection {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
+
   .actionSection {
     justify-content: space-between;
   }
+
   .metaCard {
     padding: 1.25rem;
   }
@@ -328,8 +355,15 @@
 }
 
 @keyframes pulseDot {
-  0% { opacity: 0.4; transform: scale(0.9); }
-  100% { opacity: 1; transform: scale(1.1); }
+  0% {
+    opacity: 0.4;
+    transform: scale(0.9);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 .scrollOverlay {

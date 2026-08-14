@@ -17,7 +17,11 @@ export default function HeroBanner({ item, type = 'movie', onPlay, onInfo }) {
   return (
     <div className={styles.hero}>
       {/* Background image */}
-      <div className={styles.imageWrap}>
+      <div 
+        className={styles.imageWrap} 
+        onClick={() => onPlay && onPlay(item)}
+        style={{ cursor: 'pointer' }}
+      >
         <img src={backdrop} alt={title} className={styles.image} />
         <div className={styles.gradientBottom} />
         <div className={styles.gradientLeft} />

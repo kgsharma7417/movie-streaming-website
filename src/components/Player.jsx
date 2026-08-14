@@ -7,6 +7,7 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
   if (!src) return null
 
   const [clickThrough, setClickThrough] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const clickTimerRef = useRef(null)
 
   const handleOverlayClick = () => {
@@ -18,7 +19,18 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
   }
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(
+        window.matchMedia('(max-width: 768px)').matches ||
+        ('ontouchstart' in window) ||
+        (navigator.maxTouchPoints > 0)
+      )
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
     return () => {
+      window.removeEventListener('resize', checkMobile)
       if (clickTimerRef.current) clearTimeout(clickTimerRef.current)
     }
   }, [])
@@ -66,7 +78,6 @@ export default function Player({ src, title, year, rating, overview, badge, id, 
           <div className={styles.ambientGlow} />
           <div 
             className={styles.playerBox}
-            onMouseEnter={() => setClickThrough(true)}
             onMouseLeave={() => setClickThrough(false)}
           >
             <iframe

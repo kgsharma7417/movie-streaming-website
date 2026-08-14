@@ -26,6 +26,10 @@ export default function RowCard({ item, type = 'movie', onPlay, onInfo, progress
     setExpanded(false)
   }, [])
 
+  const handleCardClick = useCallback(() => {
+    if (onPlay) onPlay(item)
+  }, [item, onPlay])
+
   return (
     <div
       className={`${styles.cardWrap} ${expanded ? styles.expanded : ''}`}
@@ -34,7 +38,7 @@ export default function RowCard({ item, type = 'movie', onPlay, onInfo, progress
     >
       <div className={styles.card}>
         {/* Thumbnail */}
-        <div className={styles.thumbnail}>
+        <div className={styles.thumbnail} onClick={handleCardClick} style={{ cursor: 'pointer' }}>
           {image ? (
             <img src={image} alt={title} loading="lazy" />
           ) : (
